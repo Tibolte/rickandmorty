@@ -1,6 +1,6 @@
 package fr.northborders.rickandmorty.data.model
 
-data class CharacterQueryModel(
+data class CharacterQuery(
     var name : String? = null,
     var status : String? = null,
     var gender : String? = null

@@ -9,7 +9,7 @@ import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "characters")
-data class CharacterModel(
+data class Character(
 
     @SerializedName("created")
     var created: String?,
@@ -18,9 +18,9 @@ data class CharacterModel(
     var gender: String?,
     @PrimaryKey
     @SerializedName("id")
-    var _id: Int?,
+    var id: Int?,
     @SerializedName("image")
-    var _image: String?,
+    var image: String?,
     @SerializedName("name")
     var name: String?,
     @TypeConverters(OriginTypeConverter::class)
@@ -62,12 +62,12 @@ data class CharacterModel(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<CharacterModel> {
-        override fun createFromParcel(parcel: Parcel): CharacterModel {
-            return CharacterModel(parcel)
+    companion object CREATOR : Parcelable.Creator<Character> {
+        override fun createFromParcel(parcel: Parcel): Character {
+            return Character(parcel)
         }
 
-        override fun newArray(size: Int): Array<CharacterModel?> {
+        override fun newArray(size: Int): Array<Character?> {
             return arrayOfNulls(size)
         }
     }

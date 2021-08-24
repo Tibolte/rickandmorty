@@ -53,4 +53,18 @@ dependencies {
     // Paging
     def pagingVersion = "3.0.1"
     implementation "androidx.paging:paging-runtime:$pagingVersion"
+
+    // Dagger
+    def daggerVersion = "2.38.1"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+
+    def archCoreVersion = "2.1.0"
+
+    testImplementation "androidx.arch.core:core-testing:$archCoreVersion"
+    
+    androidTestImplementation "androidx.arch.core:core-testing:$archCoreVersion"
 }

@@ -6,17 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import fr.northborders.rickandmorty.Consts
-import fr.northborders.rickandmorty.data.model.CharacterModel
+import fr.northborders.rickandmorty.data.model.Character
 import fr.northborders.rickandmorty.data.model.OriginTypeConverter
 
 @Database(
-    entities = [CharacterModel::class],
+    entities = [Character::class],
     version = 4,
     exportSchema = false
 )
 @TypeConverters(OriginTypeConverter::class)
 abstract class MainDatabase: RoomDatabase() {
-    abstract fun charactersDao(): CharacterDao
+    abstract fun charactersDao(): CharactersDao
 
     companion object {
         @Volatile

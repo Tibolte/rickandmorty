@@ -1,21 +1,23 @@
 package fr.northborders.rickandmorty.data.local
 
-import androidx.paging.PagingSource
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import fr.northborders.rickandmorty.data.model.CharacterModel
+import fr.northborders.rickandmorty.data.model.Character
 
 @Dao
-interface CharacterDao {
+interface CharactersDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(repos: List<CharacterModel>)
+    suspend fun insertAll(repos: List<Character>)
 
 
     @Query("SELECT * FROM characters")
-    fun getCharacters(): PagingSource<Int, CharacterModel>
+    fun getCharacters(): LiveData<List<Character>>
 
+    @Query("SELECT * FROM characters WHERE id = :id")
+    fun getCharacter(id: Int?): LiveData<Character>
 
     @Query("DELETE FROM characters")
     suspend fun clearCharacters()
