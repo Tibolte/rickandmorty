@@ -1,17 +1,16 @@
 package fr.northborders.rickandmorty.data.remote
 
+import fr.northborders.rickandmorty.data.model.Character
 import fr.northborders.rickandmorty.data.model.CharacterListResponse
+import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.Path
 
 interface RickAndMortyService {
 
     @GET("character")
-    suspend fun getCharacters(
-        @Query("page") page: Int?,
-        @Query("name") name : String?,
-        @Query("status") status: String?,
-        @Query("gender") gender : String?
-    ) : CharacterListResponse
+    suspend fun getCharacters(): Response<CharacterListResponse>
 
+    @GET("character/{id}")
+    suspend fun getCharacter(@Path("id") id: Int): Response<Character>
 }

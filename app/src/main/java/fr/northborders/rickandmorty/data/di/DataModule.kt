@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import fr.northborders.rickandmorty.Consts
 import fr.northborders.rickandmorty.data.local.MainDatabase
+import fr.northborders.rickandmorty.data.remote.RickAndMortyRemoteDataSource
 import fr.northborders.rickandmorty.data.remote.RickAndMortyService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,4 +56,9 @@ class DataModule {
     @Singleton
     fun provideService(retrofit: Retrofit): RickAndMortyService =
         retrofit.create(RickAndMortyService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCharactersRemoteDataSource(service: RickAndMortyService)
+        = RickAndMortyRemoteDataSource(service)
 }
