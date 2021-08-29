@@ -57,12 +57,18 @@ dependencies {
     implementation "androidx.paging:paging-runtime:$pagingVersion"
 
     // Dagger
-    def daggerVersion = "2.38.1"
+    def daggerVersion = "2.23.2"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+
+    def lifecycleVersion = "2.2.0"
+    implementation "androidx.fragment:fragment-ktx:1.3.6"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
 
     def archCoreVersion = "2.1.0"
 
