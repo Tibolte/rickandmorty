@@ -1,4 +1,4 @@
-package fr.northborders.rickandmorty.data.di
+package fr.northborders.rickandmorty.di
 
 import android.app.Application
 import com.google.gson.Gson
@@ -17,8 +17,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module
-class DataModule {
+@Module(includes = [ViewModelModule::class, CoreDataModule::class])
+class AppModule {
     @Provides
     @Singleton
     fun provideGson(): Gson = GsonBuilder().setLenient().create()
