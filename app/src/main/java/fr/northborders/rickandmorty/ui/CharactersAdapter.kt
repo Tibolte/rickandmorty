@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import fr.northborders.rickandmorty.data.model.Character
 import fr.northborders.rickandmorty.databinding.ItemCharacterBinding
 
@@ -30,6 +31,7 @@ class CharactersAdapter: ListAdapter<Character, CharactersAdapter.ViewHolder>(Di
             binding.apply {
                 character = item
             }
+            binding.imgCharacter.load(item.image)
         }
     }
 }
