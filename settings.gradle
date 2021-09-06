@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
         gradlePluginPortal()
         google()
         mavenCentral()
@@ -8,6 +9,15 @@ pluginManagement {
         id 'com.android.application' version '7.1.0-alpha06'
         id 'com.android.library' version '7.1.0-alpha06'
         id 'org.jetbrains.kotlin.android' version '1.5.20'
+        id "androidx.navigation.navigation-safe-args-gradle-plugin" version "2.3.5"
+        id "androidx.navigation.safeargs.kotlin" version "2.3.5"
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "androidx.navigation.safeargs.kotlin") {
+                useModule("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
+            }
+        }
     }
 }
 dependencyResolutionManagement {
@@ -17,5 +27,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "RickAndMorty"
 include ':app'
