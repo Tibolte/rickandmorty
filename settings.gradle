@@ -6,8 +6,8 @@ pluginManagement {
         mavenCentral()
     }
     plugins {
-        id 'com.android.application' version '7.1.0-alpha06'
-        id 'com.android.library' version '7.1.0-alpha06'
+        id 'com.android.application' version '7.0.2'
+        id 'com.android.library' version '7.0.2'
         id 'org.jetbrains.kotlin.android' version '1.5.20'
         id "androidx.navigation.navigation-safe-args-gradle-plugin" version "2.3.5"
         id "androidx.navigation.safeargs.kotlin" version "2.3.5"
