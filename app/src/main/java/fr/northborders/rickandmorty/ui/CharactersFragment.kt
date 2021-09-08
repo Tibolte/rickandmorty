@@ -46,13 +46,15 @@ class CharactersFragment: Fragment(), Injectable {
         viewModel.characters.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Result.Status.SUCCESS -> {
-                    //binding.progressBar.hide()
+                    binding.progress.hide()
                     result.data?.let { adapter.submitList(it) }
                 }
                 Result.Status.LOADING -> {
+                    binding.progress.show()
                     Timber.d("loading")
                 }
                 Result.Status.ERROR -> {
+                    binding.progress.hide()
                     Snackbar.make(binding.root, result.message!!, Snackbar.LENGTH_LONG).show()
                 }
             }
