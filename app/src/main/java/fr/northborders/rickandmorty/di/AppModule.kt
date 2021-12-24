@@ -5,7 +5,11 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.internal.managers.ApplicationComponentManager
+import dagger.hilt.components.SingletonComponent
 import fr.northborders.rickandmorty.Consts
+import fr.northborders.rickandmorty.MainApplication
 import fr.northborders.rickandmorty.data.local.MainDatabase
 import fr.northborders.rickandmorty.data.remote.RickAndMortyRemoteDataSource
 import fr.northborders.rickandmorty.data.remote.RickAndMortyService
@@ -17,8 +21,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-@Module(includes = [ViewModelModule::class, CoreDataModule::class])
-class AppModule {
+@Module
+@InstallIn(SingletonComponent::class)
+class eAppModule {
     @Provides
     @Singleton
     fun provideGson(): Gson = GsonBuilder().setLenient().create()
