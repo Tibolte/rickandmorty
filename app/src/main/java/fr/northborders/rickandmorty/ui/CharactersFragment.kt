@@ -4,38 +4,41 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import fr.northborders.rickandmorty.data.Result
+import fr.northborders.rickandmorty.data.repository.CharactersRepository
 import fr.northborders.rickandmorty.databinding.FragmentCharactersBinding
-import fr.northborders.rickandmorty.di.Injectable
-import fr.northborders.rickandmorty.di.injectViewModel
 import timber.log.Timber
 import javax.inject.Inject
 
-class CharactersFragment: Fragment(), Injectable {
+@AndroidEntryPoint
+class CharactersFragment: Fragment() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var viewModel: CharactersViewModel
+    lateinit var repository: CharactersRepository
+
+    private lateinit var viewModel: CharactersViewModel
+    private lateinit var viewModelFactory: CharactersViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = injectViewModel(viewModelFactory)
 
         val binding = FragmentCharactersBinding.inflate(inflater, container, false)
-
-        //(activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
         val adapter = CharactersAdapter()
         binding.recyclerView.adapter = adapter
 
+        viewModelFactory = CharactersViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(CharactersViewModel::class.java)
 
         subscribeUI(binding, adapter)
 
