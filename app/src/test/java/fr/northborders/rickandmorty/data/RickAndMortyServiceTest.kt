@@ -42,7 +42,7 @@ class RickAndMortyServiceTest {
     @Test
     fun getCharactersResponse() {
         runBlocking {
-            val response = service.getCharacters().body()
+            val response = service.getCharacters(1).body()
 
             // TODO mock an api response base on a json file
         }
