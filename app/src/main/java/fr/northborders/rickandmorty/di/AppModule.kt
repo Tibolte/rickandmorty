@@ -6,12 +6,9 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.internal.managers.ApplicationComponentManager
 import dagger.hilt.components.SingletonComponent
 import fr.northborders.rickandmorty.Consts
-import fr.northborders.rickandmorty.MainApplication
 import fr.northborders.rickandmorty.data.local.MainDatabase
-import fr.northborders.rickandmorty.data.remote.RickAndMortyRemoteDataSource
 import fr.northborders.rickandmorty.data.remote.RickAndMortyService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -65,9 +62,4 @@ class eAppModule {
     @Singleton
     fun provideService(retrofit: Retrofit): RickAndMortyService =
         retrofit.create(RickAndMortyService::class.java)
-
-    @Provides
-    @Singleton
-    fun provideCharactersRemoteDataSource(service: RickAndMortyService)
-        = RickAndMortyRemoteDataSource(service)
 }

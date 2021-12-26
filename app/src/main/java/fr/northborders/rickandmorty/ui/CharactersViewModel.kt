@@ -13,7 +13,6 @@ import javax.inject.Inject
 @ExperimentalPagingApi
 @HiltViewModel
 class CharactersViewModel @Inject constructor(private val repository: CharactersRepository): BaseViewModel() {
-    //val characters = repository.characters
 
     private lateinit var _charactersFlow: Flow<PagingData<Character>>
     val charactersFlow: Flow<PagingData<Character>>

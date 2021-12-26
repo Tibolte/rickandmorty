@@ -20,6 +20,7 @@ val characterA = Character(
     1,
     1,
     1,
+    1,
     1
 )
 
@@ -37,5 +38,6 @@ val characterB = Character(
     2,
     2,
     2,
-    2
+    2,
+    1
 )
