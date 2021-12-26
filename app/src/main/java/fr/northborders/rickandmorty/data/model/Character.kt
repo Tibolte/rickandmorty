@@ -12,47 +12,49 @@ import com.google.gson.annotations.SerializedName
 data class Character(
 
     @SerializedName("created")
-    var created: String?,
+    var created: String,
     @ColumnInfo(name="gender")
     @SerializedName("gender")
-    var gender: String?,
+    var gender: String,
     @PrimaryKey
     @SerializedName("id")
-    var id: Int?,
+    var id: Int,
     @SerializedName("image")
-    var image: String?,
+    var image: String,
     @SerializedName("name")
-    var name: String?,
+    var name: String,
     @TypeConverters(OriginTypeConverter::class)
     @SerializedName("origin")
-    var origin: Origin?,
+    var origin: Origin,
     @SerializedName("species")
-    var species: String?,
+    var species: String,
     @SerializedName("status")
-    var status: String?,
+    var status: String,
     @SerializedName("type")
-    var type: String?,
+    var type: String,
     @SerializedName("url")
-    var url: String?,
-    var prevKey : Int?,
-    var nextKey : Int?,
-    var filteredPrevKey : Int?,
-    var filteredNextKey : Int?
+    var url: String,
+    var prevKey : Int,
+    var nextKey : Int,
+    var filteredPrevKey : Int,
+    var filteredNextKey : Int,
+    var page: Int?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readValue(Origin::class.java.classLoader) as Origin?,
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readValue(Int::class.java.classLoader) as? Int,
-        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString() as String,
+        parcel.readString() as String,
+        parcel.readValue(Int::class.java.classLoader) as Int,
+        parcel.readString() as String,
+        parcel.readString() as String,
+        parcel.readValue(Origin::class.java.classLoader) as Origin,
+        parcel.readString() as String,
+        parcel.readString() as String,
+        parcel.readString() as String,
+        parcel.readString() as String,
+        parcel.readValue(Int::class.java.classLoader) as Int,
+        parcel.readValue(Int::class.java.classLoader) as Int,
+        parcel.readValue(Int::class.java.classLoader) as Int,
+        parcel.readValue(Int::class.java.classLoader) as Int,
         parcel.readValue(Int::class.java.classLoader) as? Int
     )
     override fun writeToParcel(p0: Parcel?, p1: Int) {

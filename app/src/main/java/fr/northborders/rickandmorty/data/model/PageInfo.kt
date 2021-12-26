@@ -3,7 +3,7 @@ package fr.northborders.rickandmorty.data.model
 import com.google.gson.annotations.SerializedName
 
 
-data class Info(
+data class PageInfo(
     @SerializedName("count")
     var count: Int?,
     @SerializedName("next")

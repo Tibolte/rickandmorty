@@ -48,6 +48,10 @@ class eAppModule {
     @Provides
     fun provideCharacterDao(db: MainDatabase) = db.charactersDao()
 
+    @Singleton
+    @Provides
+    fun providePageKeyDao(db: MainDatabase) = db.pageKeyDao()
+
     @Provides
     @Singleton
     fun provideRetrofit(gson: Gson, okHttpClient: OkHttpClient.Builder): Retrofit =

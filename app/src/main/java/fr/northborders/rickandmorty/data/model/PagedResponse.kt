@@ -2,9 +2,9 @@ package fr.northborders.rickandmorty.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class CharacterListResponse(
+data class PagedResponse(
     @SerializedName("info")
-    var info: Info?,
+    var pageInfo: PageInfo?,
     @SerializedName("results")
     var results: List<Character>
 )

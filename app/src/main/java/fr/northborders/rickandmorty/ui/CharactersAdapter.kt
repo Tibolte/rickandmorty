@@ -2,6 +2,7 @@ package fr.northborders.rickandmorty.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,7 @@ import coil.load
 import fr.northborders.rickandmorty.data.model.Character
 import fr.northborders.rickandmorty.databinding.ItemCharacterBinding
 
-class CharactersAdapter: ListAdapter<Character, CharactersAdapter.ViewHolder>(DiffCallback()) {
+class CharactersAdapter: PagingDataAdapter<Character, CharactersAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemCharacterBinding.inflate(
@@ -19,7 +20,7 @@ class CharactersAdapter: ListAdapter<Character, CharactersAdapter.ViewHolder>(Di
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val character = getItem(position)
         holder.apply {
-            bind(character)
+            character?.let { bind(it) }
             itemView.tag = character
         }
     }

@@ -8,15 +8,17 @@ import androidx.room.TypeConverters
 import fr.northborders.rickandmorty.Consts
 import fr.northborders.rickandmorty.data.model.Character
 import fr.northborders.rickandmorty.data.model.OriginTypeConverter
+import fr.northborders.rickandmorty.data.model.PageKey
 
 @Database(
-    entities = [Character::class],
-    version = 4,
+    entities = [Character::class, PageKey::class],
+    version = 5,
     exportSchema = false
 )
 @TypeConverters(OriginTypeConverter::class)
 abstract class MainDatabase: RoomDatabase() {
     abstract fun charactersDao(): CharactersDao
+    abstract fun pageKeyDao(): PageKeyDao
 
     companion object {
         @Volatile
