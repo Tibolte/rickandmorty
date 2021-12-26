@@ -22,8 +22,7 @@ class CharactersFragment: Fragment() {
     @Inject
     lateinit var repository: CharactersRepository
 
-    private lateinit var viewModel: CharactersViewModel
-    private lateinit var viewModelFactory: CharactersViewModelFactory
+    private val viewModel: CharactersViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,10 +34,6 @@ class CharactersFragment: Fragment() {
 
         val adapter = CharactersAdapter()
         binding.recyclerView.adapter = adapter
-
-        viewModelFactory = CharactersViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(CharactersViewModel::class.java)
 
         subscribeUI(binding, adapter)
 
