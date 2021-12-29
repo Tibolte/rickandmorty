@@ -4,11 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import fr.northborders.rickandmorty.data.model.Character
 import fr.northborders.rickandmorty.databinding.ItemCharacterBinding
+import android.os.Build
+import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import fr.northborders.rickandmorty.R
+
 
 class CharactersAdapter: PagingDataAdapter<Character, CharactersAdapter.ViewHolder>(DiffCallback()) {
 
@@ -33,6 +38,25 @@ class CharactersAdapter: PagingDataAdapter<Character, CharactersAdapter.ViewHold
                 character = item
             }
             binding.imgCharacter.load(item.image)
+            val context = binding.root.context
+            val drawable = ContextCompat.getDrawable(context, R.drawable.is_status_circle)
+            when (item.status) {
+                "Alive" -> {
+                    val color = ContextCompat.getColor(context, R.color.green_a700)
+                    drawable?.let { DrawableCompat.setTint(it, color) }
+                    binding.txtStatus.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
+                }
+                "Dead" -> {
+                    val color = ContextCompat.getColor(context, R.color.red_a700)
+                    drawable?.let { DrawableCompat.setTint(it, color) }
+                    binding.txtStatus.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
+                }
+                "unknown" -> {
+                    val color = ContextCompat.getColor(context, R.color.gray_700)
+                    drawable?.let { DrawableCompat.setTint(it, color) }
+                    binding.txtStatus.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
+                }
+            }
         }
     }
 }
