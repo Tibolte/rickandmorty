@@ -20,7 +20,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class eAppModule {
+class AppModule {
     @Provides
     @Singleton
     fun provideGson(): Gson = GsonBuilder().setLenient().create()
@@ -35,6 +35,7 @@ class eAppModule {
         OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor)
 
     @Provides
+    @Singleton
     fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
 
     @Singleton
