@@ -14,14 +14,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class CharactersRepository @Inject constructor(private val db: MainDatabase,
-                                                private val service: RickAndMortyService) {
+interface CharactersRepository {
     @ExperimentalPagingApi
-    val characters: Flow<PagingData<Character>> = Pager(
-        config = PagingConfig(pageSize = NETWORK_PAGE_SIZE, prefetchDistance = PREFETCH_DISTANCE),
-        remoteMediator = CharactersRemoteMediator(service, db)
-    ) {
-        db.charactersDao().pagingSource()
-    }.flow
+    val characters: Flow<PagingData<Character>>
 }

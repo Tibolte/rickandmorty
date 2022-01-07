@@ -10,6 +10,9 @@ import dagger.hilt.components.SingletonComponent
 import fr.northborders.rickandmorty.Consts
 import fr.northborders.rickandmorty.data.local.MainDatabase
 import fr.northborders.rickandmorty.data.remote.RickAndMortyService
+import fr.northborders.rickandmorty.data.repository.CharactersRepositoryImpl
+import fr.northborders.rickandmorty.data.repository.CharactersRepository
+import fr.northborders.rickandmorty.ui.CharactersAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
@@ -63,4 +66,13 @@ class AppModule {
     @Singleton
     fun provideService(retrofit: Retrofit): RickAndMortyService =
         retrofit.create(RickAndMortyService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCharactersRepos(db: MainDatabase, service: RickAndMortyService) =
+        CharactersRepositoryImpl(db, service) as CharactersRepository
+
+    @Provides
+    @Singleton
+    fun provideCharactersAdapter() = CharactersAdapter()
 }
