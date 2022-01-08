@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
@@ -16,12 +17,13 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
+import javax.inject.Inject
 
 @ExperimentalPagingApi
 @AndroidEntryPoint
-class CharactersFragment: Fragment() {
+class CharactersFragment @Inject constructor(val charactersAdapter: CharactersAdapter): Fragment() {
 
-    private val viewModel: CharactersViewModel by viewModels()
+    lateinit var viewModel: CharactersViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,12 +31,12 @@ class CharactersFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        viewModel = ViewModelProvider(requireActivity())[CharactersViewModel::class.java]
         val binding = FragmentCharactersBinding.inflate(inflater, container, false)
 
-        val adapter = CharactersAdapter()
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = charactersAdapter
 
-        subscribeUI(binding, adapter)
+        subscribeUI(binding, charactersAdapter)
 
         return binding.root
     }

@@ -16,7 +16,8 @@
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:context="fr.northborders.rickandmorty.MainActivity"
-            tools:listitem="@layout/item_character" />
+            tools:listitem="@layout/item_character"
+            tools:itemCount="20" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -23,7 +23,8 @@
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"/>
 
         <TextView
             android:id="@+id/txt_name"
@@ -38,14 +39,27 @@
             app:layout_constraintTop_toTopOf="@+id/img_character" />
 
         <TextView
-            android:id="@+id/txt_species_and_status"
+            android:id="@+id/txt_species"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:text="@{character.species}"
-            tools:text="Species and Status"
+            tools:text="Species"
             app:layout_constraintStart_toEndOf="@+id/img_character"
             app:layout_constraintBottom_toBottomOf="@+id/img_character" />
+
+        <TextView
+            android:id="@+id/txt_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{character.status}"
+            android:layout_marginStart="10dp"
+            android:drawablePadding="4dp"
+            tools:drawableTint="@color/green_a700"
+            tools:text="Alive"
+            app:layout_constraintStart_toEndOf="@+id/txt_species"
+            app:layout_constraintBottom_toBottomOf="@+id/img_character"
+            app:drawableStartCompat="@drawable/ic_status_circle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

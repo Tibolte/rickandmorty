@@ -1,14 +1,13 @@
 package fr.northborders.rickandmorty.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.common.truth.Truth
 import fr.northborders.rickandmorty.data.local.CharactersDao
 import fr.northborders.rickandmorty.util.characterA
 import fr.northborders.rickandmorty.util.characterB
 import fr.northborders.rickandmorty.util.getValue
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -34,14 +33,14 @@ class CharactersDaoTest: DbTest() {
     }
 
     @Test
-    fun testGetCharacters() {
+    fun testGetCharactersList() {
         val list = getValue(charactersDao.getCharacters())
 
-        assertThat(list.size, Matchers.equalTo(2))
+        Truth.assertThat(list.size).isEqualTo(2)
     }
 
     @Test
     fun testGetCharacter() {
-        assertThat(getValue(charactersDao.getCharacter(chA.id)), Matchers.equalTo(chA))
+        Truth.assertThat(getValue(charactersDao.getCharacter(chA.id))).isEqualTo(chA)
     }
 }
