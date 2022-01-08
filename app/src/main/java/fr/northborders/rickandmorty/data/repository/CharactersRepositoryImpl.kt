@@ -1,9 +1,6 @@
 package fr.northborders.rickandmorty.data.repository
 
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.*
 import fr.northborders.rickandmorty.Consts
 import fr.northborders.rickandmorty.data.local.MainDatabase
 import fr.northborders.rickandmorty.data.model.Character

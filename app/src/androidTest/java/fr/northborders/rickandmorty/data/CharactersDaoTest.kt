@@ -34,7 +34,7 @@ class CharactersDaoTest: DbTest() {
     }
 
     @Test
-    fun testGetCharacters() {
+    fun testGetCharactersList() {
         val list = getValue(charactersDao.getCharacters())
 
         assertThat(list.size, Matchers.equalTo(2))
