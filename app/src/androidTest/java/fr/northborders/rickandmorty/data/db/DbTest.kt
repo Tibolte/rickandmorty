@@ -1,4 +1,4 @@
-package fr.northborders.rickandmorty.data
+package fr.northborders.rickandmorty.data.db
 
 import androidx.arch.core.executor.testing.CountingTaskExecutorRule
 import androidx.room.Room

@@ -1,4 +1,4 @@
-package fr.northborders.rickandmorty.data
+package fr.northborders.rickandmorty.data.db
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
