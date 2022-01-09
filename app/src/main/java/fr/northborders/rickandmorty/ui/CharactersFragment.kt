@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,10 +29,16 @@ class CharactersFragment @Inject constructor(val charactersAdapter: CharactersAd
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         viewModel = ViewModelProvider(requireActivity())[CharactersViewModel::class.java]
         val binding = FragmentCharactersBinding.inflate(inflater, container, false)
+
+        charactersAdapter.setOnItemClickListener {
+            findNavController().navigate(
+                CharactersFragmentDirections.actionCharactersFragmentToCharacterDetailFragment()
+            )
+        }
 
         binding.recyclerView.adapter = charactersAdapter
 
@@ -50,7 +56,9 @@ class CharactersFragment @Inject constructor(val charactersAdapter: CharactersAd
             )
             with(viewModel) {
                 launchOnLifecycleScope {
-                    charactersFlow.collectLatest { submitData(it) }
+                    charactersFlow.collectLatest {
+                        submitData(it)
+                    }
                 }
                 launchOnLifecycleScope {
                     loadStateFlow.collectLatest {

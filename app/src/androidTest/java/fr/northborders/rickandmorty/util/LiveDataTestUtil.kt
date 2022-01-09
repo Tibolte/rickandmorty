@@ -51,3 +51,13 @@ fun <T> LiveData<T>.getOrAwaitValue(
     @Suppress("UNCHECKED_CAST")
     return data as T
 }
+
+//fun waitFor(delay: Long): ViewAction? {
+//    return object : ViewAction {
+//        override fun getConstraints(): Matcher<View> = isRoot()
+//        override fun getDescription(): String = "wait for $delay milliseconds"
+//        override fun perform(uiController: UiController, v: View?) {
+//            uiController.loopMainThreadForAtLeast(delay)
+//        }
+//    }
+//}

@@ -14,6 +14,8 @@ import fr.northborders.rickandmorty.databinding.ItemCharacterBinding
 
 class CharactersAdapter: PagingDataAdapter<Character, CharactersAdapter.ViewHolder>(DiffCallback()) {
 
+    private var itemClickListener: ((Character) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemCharacterBinding.inflate(
             LayoutInflater.from(parent.context), parent, false))
@@ -24,7 +26,16 @@ class CharactersAdapter: PagingDataAdapter<Character, CharactersAdapter.ViewHold
         holder.apply {
             character?.let { bind(it) }
             itemView.tag = character
+            itemView.setOnClickListener {
+                itemClickListener?.let {
+                    it(character!!)
+                }
+            }
         }
+    }
+
+    fun setOnItemClickListener(listener: ((Character) -> Unit)) {
+        itemClickListener = listener
     }
 
     class ViewHolder(

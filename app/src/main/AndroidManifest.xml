@@ -12,9 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RickAndMorty"
-        android:name=".MainApplication">
+        android:name="fr.northborders.rickandmorty.MainApplication">
         <activity
-            android:name=".MainActivity"
+            android:name="fr.northborders.rickandmorty.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true">
             <intent-filter>

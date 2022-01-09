@@ -3,20 +3,20 @@ package fr.northborders.rickandmorty.util
 import fr.northborders.rickandmorty.data.model.Character
 import fr.northborders.rickandmorty.data.model.Origin
 
-val originA = Origin("Saturn", "url_to_saturn")
-val originB = Origin("Mars", "url_to_mars")
+val originA = Origin("Saturn", "https://rickandmortyapi.com/api/location/1")
+val originB = Origin("Mars", "https://rickandmortyapi.com/api/location/1")
 
 val characterA = Character(
-    "createdA",
-    "m",
+    "2017-11-04T18:48:46.250Z",
+    "Male",
     1,
-    "some_url_to_image_A",
-    "characterA",
+    "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+    "Rick Sanchez",
     originA,
-    "speciesA",
-    "statusA",
-    "typeA",
-    "urlA",
+    "Human",
+    "Alive",
+    "",
+    "https://rickandmortyapi.com/api/character/1",
     1,
     1,
     1,
@@ -25,15 +25,15 @@ val characterA = Character(
 )
 
 val characterB = Character(
-    "createdB",
-    "f",
+    "2017-11-04T18:48:46.250Z",
+    "Male",
     2,
-    "some_url_to_image_B",
-    "characterB",
+    "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+    "Morty Smith",
     originB,
-    "speciesB",
-    "statusB",
-    "typeB",
+    "Human",
+    "Alive",
+    "https://rickandmortyapi.com/api/character/2",
     "urlB",
     2,
     2,
