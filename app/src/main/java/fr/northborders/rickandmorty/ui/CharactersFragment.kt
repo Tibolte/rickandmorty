@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
+import timber.log.Timber
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -24,6 +25,7 @@ import javax.inject.Inject
 class CharactersFragment @Inject constructor(val charactersAdapter: CharactersAdapter): Fragment() {
 
     lateinit var viewModel: CharactersViewModel
+    lateinit var binding: FragmentCharactersBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +34,7 @@ class CharactersFragment @Inject constructor(val charactersAdapter: CharactersAd
     ): View {
 
         viewModel = ViewModelProvider(requireActivity())[CharactersViewModel::class.java]
-        val binding = FragmentCharactersBinding.inflate(inflater, container, false)
+        binding = FragmentCharactersBinding.inflate(inflater, container, false)
 
         charactersAdapter.setOnItemClickListener {
             findNavController().navigate(
@@ -42,13 +44,15 @@ class CharactersFragment @Inject constructor(val charactersAdapter: CharactersAd
 
         binding.recyclerView.adapter = charactersAdapter
 
-        subscribeUI(binding, charactersAdapter)
+        subscribeUI()
+
+        Timber.d("RICKANDMORTY", charactersAdapter.itemCount.toString())
 
         return binding.root
     }
 
-    private fun subscribeUI(binding: FragmentCharactersBinding, adapter: CharactersAdapter) {
-        with(adapter) {
+    fun subscribeUI() {
+        with(charactersAdapter) {
             binding.swipeRefresh.setOnRefreshListener { refresh() }
             binding.recyclerView.adapter = withLoadStateHeaderAndFooter(
                 header = PagingLoadStateAdapter(this),
